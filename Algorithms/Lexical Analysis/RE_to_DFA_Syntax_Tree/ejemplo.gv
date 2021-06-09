@@ -1,0 +1,15 @@
+digraph G {
+	rankdir=LR;
+	1 -> 1 [label="a"]
+	1 -> 1 [label="b"]
+	1 -> 2 [label="c"]
+	2 -> 3 [label="d"]
+	3 -> 4 [label="e"]
+	4 -> 3 [label="f"]
+	3 [peripheries=2]
+	" " [shape=plaintext]
+	" " -> 1 [label="start"]
+	labelloc="t";
+	label="(a|b)*cd(ef)*";
+}
+

@@ -1,0 +1,163 @@
+
+Gramatica:
+
+	F -> cBB
+	B -> aB
+	B -> b
+
+1) Extendiendo:
+	F' -> F
+	F  -> cBB
+	B  -> aB
+	B  -> b
+2) Calcular cerradura: { [F' -> .F, $] }
+
+C({ [F' -> .F, $] }) = 	{ |[F' -> .F, $]|, [F -> .cBB, $] } = (1)
+			Primero($) = {$}
+
+C( Mover( 1, F ) ) =   	{ |[F' -> F., $]| } = (2)
+
+C( Mover( 1, c ) ) =   	{ |[F -> c.BB, $]|,    	[B -> .aB, a],  [B -> .b, a]
+					      	[B -> .aB; b],	[B -> .b, b]} = (3)
+			Primero(B$)
+				Primero(B) = {a, b}
+
+C( Mover(3, B) ) =     	{ |[F -> cB.B, $]|,	[B -> .aB, $ ],	[B->.b, $] }  = (4)
+			Primer($) = $
+
+C( Mover(3, a) ) =	{ |[B -> a.B, a], [B -> a.B, b]|, [B -> .aB, a], [B -> .b, a],
+							  [B -> .aB, b], [B -> .b, b]} = (5)
+			Primero(a) = a
+			Primero(b) = b
+
+C( Mover(3, b) ) = 	{ |[B -> b., a], [B -> b., b]| }  = (6)
+
+C( Mover(4, B) ) = 	{ |[F -> cBB., $] }		= (7)
+
+C( Mover(4, a) ) =	{ |[B -> a.B, $]|, 	[B -> .aB, $], 	[B -> .b, $] } = (8)
+			Primero($) = $
+
+
+C( Mover(4, b) ) = 	{ |[B -> b., $]| } 		= (9)
+
+C( Mover(5, B) ) = 	{ |[B -> aB., a], [B -> aB., b]| } 	= (10)
+
+C( Mover(5, a) ) = 	{ |[B -> a.B, a], [B -> a.B, b]| }	= (5)
+
+C( Mover(5, b) ) = 	{ |[B -> b., a],  [B -> b., b]|}	= (6)
+
+C( Mover(8, B) ) = 	{ |[B -> aB., $]| } 			= (11)
+
+C( Mover(8, a) ) = 	{ |[B -> a.B, $]| }			= (8)
+
+C( Mover(8, b) ) = 	{ |[B -> b., $]|  }			= (9)
+
+
+
+
+
+2.5) Tabla LR(1):
+
+Primero(F) = {c}
+Primero(B) = {a, b}
+
+
+Estado			Acciones			  Mover
+		a	b	c	$		F	B
+1				d3			2	
+2				       ACC
+3		d5	d6					4
+4		d8	d9					7
+5		d5	d6					10
+6		r4	r4
+7					r2
+8		d8	d9					11
+9					r4
+10		r3	r3
+11					r3
+
+
+
+
+
+
+
+
+3) Identificar los subconjuntos fusionables:
+
+
+(1) = |[F' -> .F, $]|
+
+
+(2) = |[F' -> F., $]|
+
+
+(3) = |[F -> c.BB, $]|
+
+
+(4) = |[F -> cB.B, $]|
+			
+
+(5) = |[B -> a.B, a], [B -> a.B, b]|
+(8) = |[B -> a.B, $]|
+
+
+(6) = |[B -> b., a], [B -> b., b]|
+(9) = |[B -> b., $]|
+
+
+(7) = |[F -> cBB., $]
+
+
+(10) = |[B -> aB., a], [B -> aB., b]|
+(11) = |[B -> aB., $]|
+
+
+
+4) Tabla LALR:
+
+
+
+Estado			Acciones			  Mover
+		a	b	c	$		F	B
+1				d3			2	
+2				       ACC
+3		d[5,8]	d[6,9]					4
+4		d[5,8]	d[6,9]					7
+[5,8]		d[5,8]	d[6,9]					[10,11]
+[6,9]		r4	r4		r4
+7					r2
+[10,11]		r3	r3		r3
+
+
+
+
+
+
+Analizar:		
+
+Entrada			Pila					Acciones			Anuncios
+caaabab$		1					1,c 	= d3		
+ aaabab$		3, 1					3,a 	= d[5,8] 
+  aabab$		[5,8], 3, 1				[5,8], a = d[5,8]
+   abab$		[5,8], [5,8], 3, 1			[5,8], a = d[5,8]
+    bab$		[5,8], [5,8], [5,8], 3, 1		[5,8], b = d[6,9]
+     ab$		[6,9], [5,8], [5,8], [5,8], 3, 1        [6,9], a = r4			B -> b
+			[10,11], [5,8], [5,8], [5,8], 3, 1	[10,11], a = r3			B -> aB
+			[10,11], [5,8], [5,8], 3, 1		[10,11], a = r3			B -> aB
+			[10,11], [5,8], 3, 1			[10,11], a = r3			B -> aB
+			4, 3, 1					4,a 	= d[5,8]
+      b$	        [5,8], 4, 3, 1				[5,8],b	= d[6,9]
+       $		[6,9], [5,8], 4, 3, 1			[6,9],$ = r4			B -> b
+			[10,11], [5,8], 4, 3, 1			[10,11],$ = r3			B -> aB
+			7, 4, 3, 1				7, $ = r2			F -> cBB
+			2, 1					2, $ = ACC
+
+
+Demostración:
+
+F -> cBB -> cBaB -> cBab -> caBab -> caaBab -> caaaBab -> caaabab
+			
+
+
+
