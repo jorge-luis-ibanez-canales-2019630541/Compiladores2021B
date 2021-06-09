@@ -1,0 +1,35 @@
+\w  - alfanumerico y "_"
+\d  - digito
+\s  - espacio en blanco
+^   - indica que es al inicio de una palabra
+$   - indica el final de una palabra
+.   - matchea lo que sea que le pongas (excepto newlines)
+
+[]  - character class, puede ir cualquier cosa que vaya dentro
+	[1-9][a-z][A-Z]  el primer caracter un digito positivo, el segundo una letra en minuscula y la tercera en mayuscula
+
+[^] - Cualquier cosa menos lo que vaya dentro
+	[^a-z] cualquier cosa menos una letra en minuscula
+
+{x,y} - solo si se repite un numero de veces entre [x, y] inclusivos
+
+*   -  0 o más
+
+\b  -  Es como que al inicio y al final de cada palabra hay una marquita, esa marquita matchea con \b
+
+regex_1(?=regex_2) matchea a regex_1 solo si adelante de él aparece inmediatamente regex_2
+regex_1(?!regex_2) matchea a regex_1 solo si adelante de él NO aparece inmediatamente regex_2
+
+(?<=regex_2)regex1 matchea a regex_1 solo si antes de él aparece inmediatamente regex_2
+(?<=regex_2)regex1 matchea a regex_1 solo si antes de él NO aparece inmediatamente regex_2
+
+
+(regex_1)(regex_2)(regex_3)\1\2\3   \1 \2 y \3 coinciden con las asociaciones que se hicieron (\1 == regex_1)
+
+(?|(regex_1)|(regex_2)|(regex_3))  agrupa a todos en una sola asociación, tons \1 puede llegar a ser regex_1 o regex_2 o regex_3
+
+
+
+LEX:
+{} si va un nombre, sustituye lo que tiene ese nombre, por ejemplo {DIGIT} y si declaraste antes DIGIT [0-9]
+   sino es como se puso arriba el {x,y}
