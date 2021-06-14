@@ -33,6 +33,8 @@ class Grammar{
         set<NonTerminal> get_non_terminals() const;
         vector<ProductionRule> get_production_rules() const;
         ProductionRule get_production_rule(int id) const;
+        int get_idx_of_production(ProductionRule PR) const;
+        vector<int> get_idx_productions_of_nt(NonTerminal NT) const;
         int get_sz() const;
 
         bool operator==(const Grammar G) const;

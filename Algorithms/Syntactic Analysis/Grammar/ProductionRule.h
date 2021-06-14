@@ -17,6 +17,7 @@ class ProductionRule{
         vector< Symbol > right_part;
 
     public:
+        ProductionRule() {}
         ProductionRule(NonTerminal left_part, vector<Symbol> right_part): left_part(left_part), right_part(right_part) {}
 
         ProductionRule(string str);
@@ -29,9 +30,11 @@ class ProductionRule{
 
         void set_left_part(NonTerminal NT);
         void set_right_part(vector<Symbol> vs);
-
+        void erase_symbol_by_idx(int idx);
+        void insert_symbol_by_idx(int idx, Symbol S);
 
         bool operator==(const ProductionRule &PR) const;
+        bool operator<(const ProductionRule &PR) const;
 
 
         //friend istream& operator>>(istream&, ProductionRule&);

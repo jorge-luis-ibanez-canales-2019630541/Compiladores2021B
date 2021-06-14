@@ -4,6 +4,11 @@
 #include <vector>
 #include <algorithm>
 #include "NFA.h"
+
+
+#include <iostream>
+using std::cout;
+using std::endl;
 //#include "../RE_to_DFA_Syntax_Tree/SyntaxTree.h"
 
 using std::vector;
@@ -16,9 +21,9 @@ string GV::get_gv(NFA *NFA1, string title = "Automata") //Devuelve las aristas d
     stringstream graph_gv;
     graph_gv << "digraph G {\n\trankdir=LR;\n";    
     auto E_As = NFA1->get_trans();
-    
-    vector< vector<int> > all_edges; //all_edges[0] = {fuente, destino, label}
 
+    vector< vector<int> > all_edges; //all_edges[0] = {fuente, destino, label}
+    
     for(auto E_A: E_As)
     {
         auto state_source = E_A.first;
@@ -32,7 +37,7 @@ string GV::get_gv(NFA *NFA1, string title = "Automata") //Devuelve las aristas d
             }
         }
     }
-
+    
     sort(all_edges.begin(), all_edges.end()); //Las ordena en orden de aparicion, para que el .gv las ordene mas bonito
     for(auto edge: all_edges)
     {
@@ -43,7 +48,7 @@ string GV::get_gv(NFA *NFA1, string title = "Automata") //Devuelve las aristas d
     {
         graph_gv << "\t" << F->get_id() << " [peripheries=2]"<<"\n";
     }
-
+    
     graph_gv << "\t\" \" [shape=plaintext]" << "\n";
     graph_gv << "\t\" \" -> 1 [label=\"start\"]" << "\n";
     

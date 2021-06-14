@@ -39,12 +39,20 @@ void ProductionRule::set_left_part(NonTerminal NT) { left_part = NT; }
 void ProductionRule::set_right_part(vector<Symbol> vs) { right_part = vs; }
 
 
+void ProductionRule::erase_symbol_by_idx(int idx) { right_part.erase(right_part.begin() + idx); }
+void ProductionRule::insert_symbol_by_idx(int idx, Symbol S) { right_part.insert(right_part.begin() + idx, S); }
+
+
 
 
 
 
 bool ProductionRule::operator==(const ProductionRule &PR) const{
     return left_part == PR.left_part && right_part == PR.right_part;
+}
+
+bool ProductionRule::operator<(const ProductionRule &PR) const{
+    return right_part < PR.right_part || (right_part == PR.right_part && left_part < PR.left_part);
 }
 
 
