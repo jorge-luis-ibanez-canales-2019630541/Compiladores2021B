@@ -1,12 +1,13 @@
-#ifndef _ALGORETODFA_
-#define _ALGORETODFA_
-
 #include<map>
 #include<set>
-#include "SyntaxTreeAlgo.h"
+
+#include "SyntaxTree.h"
 #include "../../Automaton/State.h"
 #include "../../Automaton/DFA.h"
 #include "../../Automaton/Regex.h"
+#include "Node.h"
+#include "NodeAlgo.h"
+#include "SyntaxTreeAlgo.h"
 
 
 using std::set;
@@ -34,5 +35,3 @@ struct AlgoREtoDFA{
         AlgoREtoDFA(Regex regex) { ST = new SyntaxTreeAlgo( Regex( string("(") + regex.get_regex() + string(")") + string("#") ) ); }
         DFA* run();
 };
-
-#endif

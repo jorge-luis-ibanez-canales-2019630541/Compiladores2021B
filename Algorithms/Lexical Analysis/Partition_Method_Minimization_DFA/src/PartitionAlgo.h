@@ -21,7 +21,7 @@ class PartitionAlgo{
         
 
     public:
-        PartitionAlgo(DFA *DFA_Ss) { DFA_S = DFA_Ss; all_trans = DFA_S->get_trans();  }
+        PartitionAlgo(DFA *_DFA_S) {DFA_S = _DFA_S; all_trans = DFA_S->get_trans(); }
 
         bool are_distinct(State* node_u, State* node_v);
         vector<EquivClass> partition_class(EquivClass EC);

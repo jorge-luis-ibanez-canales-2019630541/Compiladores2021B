@@ -1,13 +1,30 @@
 digraph G {
 	rankdir=LR;
 	1 -> 2 [label="a"]
-	2 -> 3 [label="b"]
-	3 -> 4 [label="c"]
-	3 -> 4 [label="d"]
-	4 [peripheries=2]
+	1 -> 4 [label="b"]
+	2 -> 1 [label="c"]
+	2 -> 3 [label="a"]
+	2 -> 5 [label="b"]
+	3 -> 3 [label="a"]
+	3 -> 4 [label="b"]
+	4 -> 1 [label="c"]
+	5 -> 2 [label="a"]
+	5 -> 6 [label="b"]
+	5 -> 8 [label="c"]
+	6 -> 1 [label="c"]
+	6 -> 7 [label="b"]
+	7 -> 1 [label="c"]
+	7 -> 7 [label="b"]
+	8 -> 2 [label="a"]
+	8 -> 4 [label="b"]
+	8 -> 9 [label="c"]
+	9 -> 2 [label="a"]
+	9 -> 4 [label="b"]
+	9 -> 9 [label="c"]
+	8 [peripheries=2]
 	" " [shape=plaintext]
 	" " -> 1 [label="start"]
 	labelloc="t";
-	label="EEEEEEEEaEEEEEEEEEEEEbEEEEEEEEc|abd";
+	label="(((abc*|abc|a*bc|ab*c)*(abc*|abc)*abc))";
 }
 

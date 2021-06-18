@@ -2,33 +2,21 @@
 #include<stack>
 #include<string>
 #include<sstream>
+
 #include "../../Automaton/Regex.h"
 #include "../../Automaton/NFA.h"
-#include "SyntaxTree.h"
 #include "SyntaxTreeAlgo.h"
+#include "NodeAlgo.h"
 
 using std::set;
 using std::stack;
 using std::string;
 
 
-
-//Node
-//Setters
-void NodeAlgo::set_nullable(bool nullable){ this->nullable = nullable; }
-void NodeAlgo::set_starting(set<int> starting) { this->starting = starting; }
-void NodeAlgo::set_ending(set<int> ending) { this->ending = ending; }
-
-//Getters
-NodeAlgo* NodeAlgo::get_left(){ return (NodeAlgo*)(L); }
-NodeAlgo* NodeAlgo::get_right(){ return (NodeAlgo*)(R); }
-set<int> NodeAlgo::get_starting() { return starting; }
-set<int> NodeAlgo::get_ending() { return ending; }
-bool NodeAlgo::is_nullable(){ return nullable; }
+//SyntaxTree
+NodeAlgo* SyntaxTreeAlgo::get_root() { return (NodeAlgo*) root; }
 
 
-//SyntaxTreeAlgo
-NodeAlgo* SyntaxTreeAlgo::get_root() { return (NodeAlgo*)root;  }
 void SyntaxTreeAlgo::get_SyntaxTree(const string &regex_postfix)
 {
     stack<NodeAlgo*> Nodes;

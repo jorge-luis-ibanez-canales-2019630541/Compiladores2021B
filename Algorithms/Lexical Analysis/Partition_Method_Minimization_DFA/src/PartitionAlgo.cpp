@@ -4,9 +4,6 @@
 #include "Partition.h"
 #include "UnionFind.cpp"
 
-#include <iostream>
-
-using std::cout;
 
 bool PartitionAlgo::are_distinct(State* node_u, State* node_v)
 {
@@ -108,10 +105,8 @@ Partition PartitionAlgo::get_initial_partition()
     Partition initial_partition;
 
     EquivClass non_finales;
-
     EquivClass finales( DFA_S->get_finales()  );
-    
-    
+
     for(auto state_trans: all_trans)
     {
         State* st = state_trans.first;
@@ -132,10 +127,9 @@ Partition PartitionAlgo::get_initial_partition()
 
 DFA* PartitionAlgo::run( )
 {
-    
     Partition initial_partition = get_initial_partition();
     Partition new_partition = initial_partition, last_partition;
-    
+
     do
     {
         last_partition = new_partition;
@@ -167,6 +161,7 @@ DFA* PartitionAlgo::run( )
             }
         }
     }while(last_partition != new_partition);
+
 
     return construct_DFA(new_partition);
 }

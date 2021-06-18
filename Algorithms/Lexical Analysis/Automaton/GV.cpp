@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "NFA.h"
 
-
 #include <iostream>
 using std::cout;
 using std::endl;

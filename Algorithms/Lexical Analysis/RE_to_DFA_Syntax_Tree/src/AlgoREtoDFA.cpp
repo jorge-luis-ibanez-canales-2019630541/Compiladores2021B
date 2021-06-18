@@ -1,11 +1,14 @@
 #include<map>
 #include<set>
-#include "SyntaxTree.h"
-#include "SyntaxTreeAlgo.h"
+#include<queue>
+
 #include "../../Automaton/State.h"
 #include "../../Automaton/DFA.h"
+#include "NodeAlgo.h"
+#include "SyntaxTreeAlgo.h"
 #include "AlgoREtoDFA.h"
-#include<queue>
+
+
 
 using std::set;
 using std::map;
@@ -24,7 +27,12 @@ Si es ., el inicio es el de la izq y, si es nullable, tambien puede ser el hijo 
 
 void AlgoREtoDFA::dfs_get_nullable(NodeAlgo *curr)
 {
-    if(curr->is_leaf()) return; //Ya tiene toda la informacion
+    if(curr->is_leaf()) 
+    {
+        if( curr->get_val() == eps )
+            curr->set_nullable(true);
+        return; 
+    }
 
     if(curr->has_left()) dfs_get_nullable(curr->get_left());
     if(curr->has_right()) dfs_get_nullable(curr->get_right());
@@ -39,16 +47,20 @@ void AlgoREtoDFA::dfs_get_nullable(NodeAlgo *curr)
         if(curr->get_left()->is_nullable() && curr->get_right()->is_nullable()) curr->set_nullable(true); //nullable
         
     }
-    else //curr->get_val() == '.'
+    else //curr->get_val() == '*'
     {
-        //Ya es nullable por definicion
+        curr->set_nullable(true);
     }
 
 }
 
 void AlgoREtoDFA::dfs_get_starting(NodeAlgo *curr)
 {
-    if(curr->is_leaf()) return; //Ya tiene toda la informacion
+    if(curr->is_leaf())
+    {
+        curr->set_starting({curr->get_id()});
+        return;
+    }
 
 
     if(curr->has_left()) dfs_get_starting(curr->get_left());
@@ -81,7 +93,11 @@ void AlgoREtoDFA::dfs_get_starting(NodeAlgo *curr)
 
 void AlgoREtoDFA::dfs_get_ending(NodeAlgo *curr)
 {
-    if(curr->is_leaf()) return; //Ya tiene toda la informacion
+    if(curr->is_leaf())
+    {
+        curr->set_ending({curr->get_id()});
+        return;
+    }
 
 
     if(curr->has_left()) dfs_get_ending(curr->get_left());

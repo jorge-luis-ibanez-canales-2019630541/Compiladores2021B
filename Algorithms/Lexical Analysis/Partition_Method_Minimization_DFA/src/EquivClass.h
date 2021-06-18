@@ -11,10 +11,7 @@ class EquivClass: public set<State*>{
 
     public:
         EquivClass() {}
-        EquivClass(set<State*> states) { 
-            for(auto S: states) this->insert(S);
-            //this->insert(states.begin(), states.end()); 
-        }
+        EquivClass(set<State*> states) { this->insert(states.begin(), states.end()); }
 
         bool is_inside(State* S);
 
