@@ -18,7 +18,7 @@ def operaciones:int( a,b:int, opcion:string )
 	}
 }
 
-def fibo:int( n, a:int )
+def fibo:int( n:int )
 {
 	if( n == 0 || n == 1)
 		return 1;
@@ -30,18 +30,17 @@ const PI: float = 3.1415926535;
 let nombre:string = "Jorge"; 
 
 
-
 def adivina:void()
 {
-	let test:int = 5;
+	let test, respuesta:int = 5, random();
    	let flag:bool = false;
-    	let respuesta:int = random();
 
     	while(test--)
     	{
         	print("Tienes " + test);
 
 	        let respuesta_usuario:int = input();
+
 	        if( respuesta_usuario == respuesta )
 	            flag = true;
 	 }
@@ -73,10 +72,11 @@ def main:void()
 {
 	let a, b, c: int = 1, 2, 3;
 	let d:float;
-	let e, f:int,   g,h:float;
+	let e, f:int, g,h:float, i:string = 1, 2, 1.4, 2.3, "Hola Mundo";
+
 	for(let i:int = 0; i < 5; i++)
 	{
-		a += b+c;
+		print(i);
 	}
 	
 	print(a);	
@@ -84,12 +84,20 @@ def main:void()
 	for(nombre in nombres)
 		print(nombre);
 
-
-
 	print(fibo(5));
 	adivina();
-	expBinaria(3, 7);
+	let resultado:long = expBinaria(3, 7);
+	let resultado_esperado:long = 3**7;
+
+	if(resultado == resultado_esperado)
+		print("Si funciona");
+	else if(resultado < resultado_esperado)
+		print("Te quedaste corto");
+	else
+		print("Te pasaste");
 	
+
+	print( math.inf() );
 
 	return;
 }

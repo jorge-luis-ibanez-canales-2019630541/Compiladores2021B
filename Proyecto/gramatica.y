@@ -88,6 +88,7 @@ postfix_expression:
 |   postfix_expression '(' ')' /*Llamadas a funciones*/
 |   postfix_expression '(' argument_expression_list ')' /*Con argumentos*/
 |   postfix_expression '[' ']'
+|   postfix_expression '.' ID
 |   postfix_expression INC_OP
 |   postfix_expression DEC_OP
 ;
@@ -350,12 +351,6 @@ block_item:
 declaration_list:
     declaration
 |   declaration_list declaration 
-;
-
-
-statement_list:
-    statement
-|   statement_list statement
 ;
 
 expression_statement: 
