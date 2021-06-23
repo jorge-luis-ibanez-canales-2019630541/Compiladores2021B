@@ -1,0 +1,96 @@
+def operaciones:int( a,b:int, opcion:string )
+{
+	if( opcion == suma)
+	{
+		return a+b;
+	}
+	else if(opcion == resta)
+	{
+		return a-b;
+	}
+	else if(opcion == multiplicacion)
+	{
+		return ab;
+	}
+	else
+	{
+		return null;
+	}
+}
+
+def fibo:int( n, a:int )
+{
+	if( n == 0 || n == 1)
+		return 1;
+	return fibo(n-2) + fibo(n-1);
+}
+
+const INF: int = 1e10;
+const PI: float = 3.1415926535;
+let nombre:string = "Jorge"; 
+
+
+
+def adivina:void()
+{
+	let test:int = 5;
+   	let flag:bool = false;
+    	let respuesta:int = random();
+
+    	while(test--)
+    	{
+        	print("Tienes " + test);
+
+	        let respuesta_usuario:int = input();
+	        if( respuesta_usuario == respuesta )
+	            flag = true;
+	 }
+	
+	 if(flag)
+        	print("Muy bien, acertaste");  
+	 else
+        	print("Suerte pa la proxima");
+
+	return;
+}
+
+
+def expBinaria:long( base, exp: long )
+{
+        let respuesta:long = 1;
+        while(exp)
+        {
+            if(exp & 1)
+                respuesta *= base;
+            base *= base;
+            exp>>1;
+	}
+	return base;
+}
+
+
+def main:void()
+{
+	let a, b, c: int = 1, 2, 3;
+	let d:float;
+	let e, f:int,   g,h:float;
+	for(let i:int = 0; i < 5; i++)
+	{
+		a += b+c;
+	}
+	
+	print(a);	
+	
+	for(nombre in nombres)
+		print(nombre);
+
+
+
+	print(fibo(5));
+	adivina();
+	expBinaria(3, 7);
+	
+
+	return;
+}
+

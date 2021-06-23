@@ -1,0 +1,66 @@
+def operaciones:int( a,b:int, opcion:string )
+{
+	if( opcion == suma)
+	{
+		return a+b;
+	}
+	else if(opcion == resta)
+	{
+		return a-b;
+	}
+	else if(opcion == multiplicacion)
+	{
+		return ab;
+	}
+	else
+	{
+		return null;
+	}
+}
+
+def operaciones2:int( a,b:int, opcion:string )
+{
+	if( opcion == suma)
+	{
+		return a+b;
+	}
+	else if(opcion == resta)
+	{
+		return a-b;
+	}
+	else if(opcion == multiplicacion)
+	{
+		return ab;
+	}
+	else
+	{
+		return null;
+	}
+}
+
+
+
+def fibo:int( n, a:int )
+{
+	if( n == 0 || n == 1)
+	{
+		return 1;
+	}
+	return fibo(n-2) + fibo(n-1);
+}
+
+
+def main:void()
+{
+	let a, b, c: int = 1, 2, 3;
+	for(let i:int = 0; i < 5; i++)
+	{
+		a += b+c;
+	}
+	print(a);
+
+	print(fibo(5));
+
+	return;
+}
+

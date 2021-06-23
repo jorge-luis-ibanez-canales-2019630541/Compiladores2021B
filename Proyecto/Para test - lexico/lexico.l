@@ -82,8 +82,8 @@ ID    [a-zA-Z][a-zA-Z0-9]*
 "||"            {printf("<OR_OP>");}
 "=="            {printf("<EQ_OP>");}
 "!="            {printf("<NE_OP>");}
-"<"             {printf("<L_OP>");}
-">"             {printf("<G_OP>");}
+"<"             {printf("<");}
+">"             {printf(">");}
 "<="            {printf("<LE_OP>");}
 ">="            {printf("<GE_OP>");}
 
@@ -109,10 +109,6 @@ ID    [a-zA-Z][a-zA-Z0-9]*
 
 (\"([^"\\\n])*\")+  {printf("<STRING_C>");}
 
-
-
-
-
 {ID}          {printf("<ID>");} 
 
  /* {WS}+          {printf("<WHITE_SPACE>");} */
@@ -130,5 +126,3 @@ int main(int argc, char **argv)
 
     yylex();
 }
-
-
