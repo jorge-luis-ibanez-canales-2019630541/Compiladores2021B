@@ -3,13 +3,6 @@
     extern char yytext[];
     int yylex(void);
 
-    /*
-    void yyerror(char *error)
-    {
-        printf("Ha ocurrido un error: %s", error);
-    } 
-    */   
-
     extern int column;
     yyerror(s)
     char *s;
@@ -64,24 +57,6 @@
 %token ID 
 /*%token WHITE_SPACE*/
 
-
-
-/*
-%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
-%token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token XOR_ASSIGN OR_ASSIGN TYPE_NAME
-
-%token TYPEDEF EXTERN STATIC AUTO REGISTER
-%token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-%token STRUCT UNION ENUM ELLIPSIS
-
-%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
-
-%start translation_unit
-*/
-
 /*
 %precedence '='
 %left '+' '-'
@@ -108,7 +83,7 @@ primary_expression:
 ;
 
 
-postfix_expression: // Es como el verdadero primary
+postfix_expression: 
     primary_expression 
 |   postfix_expression '(' ')' /*Llamadas a funciones*/
 |   postfix_expression '(' argument_expression_list ')' /*Con argumentos*/
@@ -318,7 +293,7 @@ parameters_function:
     '(' parameter_list ')'  
 |   '(' ')'                 
 ;
-parameter_list: //TAL VEZ CAMBIAR
+parameter_list: 
     parameter_declaration   
 |   parameter_list ',' parameter_declaration 
 ;
@@ -383,7 +358,7 @@ statement_list:
 |   statement_list statement
 ;
 
-expression_statement: //Cuando necesito que termine con el ';'
+expression_statement: 
     ';'
 |   expression ';'
 ;
@@ -423,8 +398,8 @@ god:
 
 
 external_declaration:
-    function_definition //Para funciones
-|   declaration     //Para variables
+    function_definition 
+|   declaration     
 ;
 
 
@@ -438,18 +413,7 @@ int main()
 {
     yyparse();
 
-    def expBinaria:long( base, exp: long )
-    {
-        let respuesta:long = 1;
-        while(exp)
-        {
-            if(exp & 1)
-                respuesta *= base;
-            base *= base;
-            exp>>1;
-        }
-        return base;
-    }
+    
 
 	return 0;
 }
